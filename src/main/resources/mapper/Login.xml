@@ -2,7 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.yuch_nug.mapper.LoginMapper">
+    <resultMap id="loadEntirePostsMap" type="com.example.yuch_nug.dto.LoginDTO">
+        <result property="id" column="id" />
+        <result property="pw" column="pw" />
+    </resultMap>
     <insert id="loginSave">
         insert into yuch_nug.member (id, pw) values (#{id}, #{pw});
     </insert>
+    <select id="login">
+        select * from yuch_nug.member
+        where (id) = (#{id})
+        and (pw) = (#{pw})
+    </select>
 </mapper>
