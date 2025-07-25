@@ -19,13 +19,14 @@ import javax.sql.DataSource;
 public class databaseConfig {
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-        sqlSessionFactory.setDataSource((javax.sql.DataSource)dataSource);
+        sqlSessionFactory.setDataSource(dataSource);
         sqlSessionFactory.setTypeAliasesPackage("com.example.yuch_nug.dto");
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
-        sqlSessionFactory.setMapperLocations(resolver.getResource("classpath:mapper/Login.xml"));
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        // 모든 XML 매퍼 파일을 읽게 변경
+        sqlSessionFactory.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
 
         return sqlSessionFactory.getObject();
     }

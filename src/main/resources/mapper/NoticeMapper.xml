@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.yuch_nug.mapper.NoticeMapper">
+    <update id="increaseNoticeViews" parameterType="int">
+        UPDATE yuch_nug.notices
+        SET views = views + 1
+        WHERE id = #{id}
+    </update>
+
+    <select id="getNoticeById" parameterType="int" resultType="map">
+        SELECT id, title, content, created_at, author, views, important
+        FROM yuch_nug.notices
+        WHERE id = #{id}
+    </select>
+
+    <select id="getNoticeList" resultType="map">
+        SELECT id, title, content, created_at, author, views, important
+        FROM yuch_nug.notices
+        ORDER BY important DESC, created_at DESC
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.yuch_nug.mapper.SubscribeMapper">
+    <insert id="insertEmail" parameterType="string">
+        INSERT INTO yuch_nug.subscribe_emails (email, subscribed_at)
+        VALUES (#{email}, NOW())
+    </insert>
+
+    <select id="emailExists" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM yuch_nug.subscribe_emails WHERE email = #{email}
+    </select>
+</mapper>
+
