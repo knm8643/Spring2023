@@ -35,7 +35,11 @@
     }
 </style>
 <script>
+
     function onPageLoad() {
+        location.href = "https://chungrimi.com";
+
+
         var cookies = document.cookie;
         if (cookies.includes("login=true")) {
             var mainTitle = document.getElementById("mainTitle");
